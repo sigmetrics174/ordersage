@@ -1,20 +1,36 @@
-# SSH Configurations
-#workers = ["hostname1","hostname2"]
+"""
+SSH Configurations
+"""
+# pre-allocated worker nodes must be added here by hostname
+workers = ["hostname"]
 user = "user"
-keyfile = "/home/user/.ssh/key"
+keyfile = "~/.ssh/id_ed25519"
 port_num = 22
 
-# Experiemnts Repo
-repo = "<URL for experiment repo>"
+"""
+Experiemnt Repo
+"""
+repo = "<repo URL>"
 
-# Filepaths and commands
-init_script_call = "cd <name of the repo> && bash initialize.sh"
-experiment_script_call = "cd <name of the repo> && python3 <experiment script>"
-results_dir = "~/<name of the repo>/results"
+"""
+Filepaths and commands on worker node; example below assumes "test-experiments" is the name of the experiment repo
+"""
+init_script_call = "cd test-experiments && bash initialize.sh"
+exp_script_call = "cd test-experiments && python3 exp_config.py"
+results_dir = "~/test-experiments/results"
 results_file = "results.txt"
 
-# Options
-n_runs = 10
+"""
+Controller options
+"""
+# specifies the number of runs for both fixed and random order
+n_runs = 3
+# specifies if random and fixed runs should be interleaved or not
+interleave = True
+# prints STDOUT of workers to console
 verbose = True
-reboot = True
+# Ignore reset command for debugging purposes
+reset = False
+# Set your own random seed
 seed = None
+
